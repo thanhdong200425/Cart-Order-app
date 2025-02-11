@@ -1,0 +1,12 @@
+.buttonContainer {
+    background-color: gray;
+    color: #fff;
+    border-radius: 40px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease;
+}
+
+.buttonContainer:hover {
+    transform: scale(1.05);
+    background-color: #0d6efd;
+}

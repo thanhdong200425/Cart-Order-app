@@ -1,0 +1,16 @@
+.divider {
+    display: flex;
+    align-items: center;
+}
+
+.line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.text {
+    margin: 0 1rem;
+    color: #666;
+    text-transform: uppercase;
+}
