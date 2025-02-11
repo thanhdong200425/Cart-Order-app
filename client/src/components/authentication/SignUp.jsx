@@ -1,52 +1,39 @@
-import TextField from "./TextField";
 import styles from "../../assets/css/components/authentication/SignIn.module.css";
+import TextField from "./TextField";
 import SubmitButton from "./SubmitButton";
-import Divider from "../Divider";
-import axios from "axios";
-import config from "../../config/config";
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { checkEmptyForInput } from "../../helpers/check";
+import Divider from "../Divider";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SignIn() {
+export default function SignUp() {
     const [emailInputValue, setEmailInputValue] = useState("");
+    const [nameInputValue, setNameInputValue] = useState("");
     const [passwordInputValue, setPasswordInputValue] = useState("");
     const navigate = useNavigate();
 
-    const handleSubmitButton = async (e) => {
+    const handleSubmitButton = (e) => {
         e.preventDefault();
-
-        if (!checkEmptyForInput({ email: emailInputValue, password: passwordInputValue })) return;
-
-        try {
-            const response = await axios.post(config.apiUrl + "/sign-in", {
-                email: emailInputValue.trim(),
-                password: passwordInputValue.trim(),
-            });
-            console.log(response);
-        } catch (error) {
-            console.log("Error when sign in: " + error);
-        }
     };
 
-    const redirectToSignUp = (e) => {
+    const redirectToSignIn = (e) => {
         e.preventDefault();
-        navigate("/sign-up");
+        navigate("/sign-in");
     };
 
     return (
         <div className={styles.wrapperContainer}>
             <div className={styles.container}>
-                <h2 className={styles.title}>Welcome back</h2>
+                <h2 className={styles.title}>Welcome to Our Shop</h2>
                 <form className={styles.formContainer}>
                     <TextField label={"Your email"} type="Email" name="email" inputValue={emailInputValue} setInputValue={setEmailInputValue} isRequired={true} />
+                    <TextField label={"Your name"} type={"text"} name={"name"} inputValue={nameInputValue} setInputValue={setNameInputValue} isRequired={true} />
                     <TextField label={"Password"} type={"password"} name={"password"} isPassword={true} inputValue={passwordInputValue} setInputValue={setPasswordInputValue} isRequired={true} />
-                    <SubmitButton name={"Sign in"} handleSubmit={handleSubmitButton} />
+                    <SubmitButton name={"Sign up"} handleSubmit={handleSubmitButton} />
                     <Divider />
                 </form>
-                <button className={styles.redirectButton} onClick={redirectToSignUp}>
-                    Create an account
+                <button className={styles.redirectButton} onClick={redirectToSignIn}>
+                    Sign in
                 </button>
                 <ToastContainer />
             </div>

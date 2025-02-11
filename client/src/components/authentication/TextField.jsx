@@ -3,9 +3,8 @@ import { useState } from "react";
 import styles from "../../assets/css/components/authentication/TextField.module.css";
 import { BiHide, BiShow } from "react-icons/bi";
 
-export default function TextField({ label, type, name, isPassword = false }) {
+export default function TextField({ label, type, name, isRequired = false, isPassword = false, inputValue, setInputValue }) {
     const [showPassword, setShowPassword] = useState(false);
-    const [inputValue, setInputValue] = useState("");
 
     const handleInputChange = (e) => {
         setInputValue(e.target.value);
@@ -25,7 +24,7 @@ export default function TextField({ label, type, name, isPassword = false }) {
                     </span>
                 )}
             </label>
-            <input name={name} type={!showPassword ? type : "text"} id={name} value={inputValue} onChange={handleInputChange} />
+            <input name={name} type={!showPassword ? type : "text"} id={name} value={inputValue} onChange={handleInputChange} required={isRequired} />
         </div>
     );
 }
